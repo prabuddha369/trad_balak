@@ -21,6 +21,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/shared/TradBalakSpecial.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/shared/TradBalakSpecial.jsx", "components/shared/SolidColor.jsx", "components/shared/PrintedShirts.jsx", "components/shared/FullSleves.jsx"],
   "exclude": ["node_modules"]
 }
