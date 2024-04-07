@@ -11,7 +11,7 @@ const eb_garamond = EB_Garamond({ subsets: ["latin"] });
 
 const Footer = () => {
     return (
-        <footer className='bg-[#f2f2f2] text-black mt-[10%] p-10'>
+        <footer className='bg-[#f2f2f2] text-black pt-[10%] p-10'>
             <section className='w-full flex flex-row justify-between gap-6'>
                 <div className='flex flex-col gap-4'>
                     <h1 className='text-xl'>ABOUT US</h1>

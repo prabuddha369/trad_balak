@@ -21,6 +21,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/shared/TradBalakSpecial.jsx", "components/shared/SolidColor.jsx", "components/shared/PrintedShirts.jsx", "components/shared/FullSleves.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/shared/TradBalakSpecial.jsx", "components/shared/SolidColor.jsx", "components/shared/PrintedShirts.jsx", "components/shared/FullSleves.jsx", "app/products/[id]/page.jsx"],
   "exclude": ["node_modules"]
 }

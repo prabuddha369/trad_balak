@@ -17,7 +17,7 @@ const Header = () => {
     const [isOpen, setOpen] = useState(false);
 
     return (
-        <header className='fixed top-0 w-full h-fit py-4 flex flex-row border-b border-[#d9d9d9] justify-between place-items-center bg-white text-black'>
+        <header className='fixed z-10 top-0 w-full h-fit py-4 flex flex-row border-b border-[#d9d9d9] justify-between place-items-center bg-white text-black'>
             <nav className="ms-5">
                 <Sheet open={isOpen} onOpenChange={setOpen}>
                     <SheetTrigger className="align-middle">
