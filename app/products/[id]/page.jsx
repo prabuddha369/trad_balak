@@ -7,7 +7,7 @@ import { Separator } from "@/components/ui/separator";
 import { GrFormPreviousLink } from "react-icons/gr";
 import { Dancing_Script } from 'next/font/google'
 import Carousel from 'react-material-ui-carousel'
-import { tradbalakspecial, solidcolor, printedshirts, fullsleves } from '@/constants';
+import { asthetic, vintage, couples, fullsleves } from '@/constants';
 import Image from 'next/image';
 
 const dancing_script = Dancing_Script({ subsets: ["latin"] });
@@ -17,12 +17,12 @@ export default function Page({ params }) {
 
     // Function to find a product by productId
     const findProductById = (productId) => {
-        let product = tradbalakspecial.find(item => item.id === productId);
+        let product = asthetic.find(item => item.id === productId);
         if (!product) {
-            product = solidcolor.find(item => item.id === productId);
+            product = vintage.find(item => item.id === productId);
         }
         if (!product) {
-            product = printedshirts.find(item => item.id === productId);
+            product = couples.find(item => item.id === productId);
         }
         if (!product) {
             product = fullsleves.find(item => item.id === productId);
@@ -52,6 +52,16 @@ export default function Page({ params }) {
         setSelectedSize(size);
     };
 
+    const getDirectGoogleDriveUrl = (originalUrl) => {
+        if (originalUrl.includes('drive.google.com/file/d/')) {
+            const fileId = originalUrl.split('drive.google.com/file/d/')[1].split('/view')[0];
+            const directUrl = `https://drive.google.com/uc?id=${fileId}`;
+            return directUrl;
+        }
+
+        return originalUrl;
+    };
+
     return (
         <section className='relative'>
             {/* <div className='absolute top-[180px] w-fit h-[160px] transform -rotate-90 text-xl text-white'>READ TO SUMMERS</div> */}
@@ -60,6 +70,7 @@ export default function Page({ params }) {
                 <div>
                     <div className="pt-[30%] px-[7%] md:pt-[10%] bg-white text-black">
                         <Carousel
+                            className='flex flex-col w-[100%]'
                             autoPlay={true}
                             interval={5000}
                             swipe={true}
@@ -73,26 +84,16 @@ export default function Page({ params }) {
                             NextIcon={<GrFormNextLink size={30} className='text-black' />}
                             PrevIcon={<GrFormPreviousLink size={30} className='text-black' />}
                         >
-                            <Image src={product.imgUrl} alt={product.name}
-                                width="0"
-                                height="0"
-                                sizes="100vw"
-                                className="w-[100%] h-[65vh] md:w-1/4 md:h-[40%] mt-3 rounded-xl" />
-                            <Image src={product.imgUrl} alt={product.name}
-                                width="0"
-                                height="0"
-                                sizes="100vw"
-                                className="w-[100%] h-[65vh] md:w-1/4 md:h-[40%] mt-3 rounded-xl" />
-                            <Image src={product.imgUrl} alt={product.name}
-                                width="0"
-                                height="0"
-                                sizes="100vw"
-                                className="w-[100%] h-[65vh] md:w-1/4 md:h-[40%] mt-3 rounded-xl" />
-                            <Image src={product.imgUrl} alt={product.name}
-                                width="0"
-                                height="0"
-                                sizes="100vw"
-                                className="w-[100%] h-[65vh] md:w-1/4 md:h-[40%] mt-3 rounded-xl" />
+                            {product.imgUrl.map((imgurl, index) => (
+                                <div className='flex w-[100%] place-items-center justify-center text-center'>
+                                    <Image key={index}
+                                        src={getDirectGoogleDriveUrl(imgurl)} alt={product.name}
+                                        width="0"
+                                        height="0"
+                                        sizes="100vw"
+                                        className="w-[40vh] h-[60vh] md:w-1/4 md:h-[40%] mt-3 rounded-xl" />
+                                </div>
+                            ))}
                         </Carousel>
                         <div className='h-fit  font-medium flex flex-col'>
                             <h5 className='text-xs py-5'>TRADBALAK CLOTHING</h5>
@@ -130,11 +131,11 @@ export default function Page({ params }) {
                                 type='button'
                                 value={product.sizes[selectedSize] ? "SOLD OUT" : "ADD TO CART"}
                                 onClick={() => alert("Coming soon!")}
-                                className={`text-sm py-3 w-full ${product.sizes[selectedSize] ? "font-medium": "font-bold"}`}
+                                className={`text-sm py-3 w-full ${product.sizes[selectedSize] ? "font-medium" : "font-bold"}`}
                             />
                         </div>
 
-                        <div    className={`mx-5 mt-3 text-white ${product.sizes[selectedSize] ? "bg-[#636363]": "bg-black"}`}>
+                        <div className={`mx-5 mt-3 text-white ${product.sizes[selectedSize] ? "bg-[#636363]" : "bg-black"}`}>
                             <input type='button' value="BUY NOW" onClick={() => alert("Comming soon!")} className='text-sm py-3 font-bold w-full' />
                         </div>
                         <Separator className="border border-gray-200 mt-8" />

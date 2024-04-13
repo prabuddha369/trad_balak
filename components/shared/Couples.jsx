@@ -1,22 +1,31 @@
 import React from 'react';
-import { printedshirts } from '@/constants';
+import { couples } from '@/constants';
 import Link from 'next/link'
 import Image from 'next/image';
 
-const PrintedShirts = () => {
+const Couples = () => {
+    const getDirectGoogleDriveUrl = (originalUrl) => {
+        if (originalUrl.includes('drive.google.com/file/d/')) {
+            const fileId = originalUrl.split('drive.google.com/file/d/')[1].split('/view')[0];
+            const directUrl = `https://drive.google.com/uc?id=${fileId}`;
+            return directUrl;
+        }
+
+        return originalUrl;
+    };
     return (
-        <section id='printedshirt' className='h-full text-black pt-[20%] md:pt-[10%] flex flex-col justify-center items-center'>
-            <h1 className='text-3xl text-[#404040] pb-6'>PRINTED T-SHIRTS</h1>
+        <section id='couples' className='h-full text-black pt-[10%] flex flex-col justify-center items-center'>
+            <h1 className='text-3xl text-[#404040] pb-6'>COUPLE WEARS</h1>
             <div className='w-[96%] h-full flex flex-row md:flex-wrap justify-between overflow-x-auto'>
-                {printedshirts.map((item, index) => (
-                    <div key={index} className="flex flex-col w-full md:w-[16%] p-2">
+                {couples.map((item, index) => (
+                    <div key={index} className="flex flex-col w-[250px] md:w-[16%] p-2">
                         <Link href={`../products/${item.id}`}>
-                            <div className="w-[250px] md:w-full">
-                                <Image src={item.imgUrl} alt={item.name}
+                            <div className="flex flex-col place-items-center justify-center  md:w-full">
+                                <Image src={getDirectGoogleDriveUrl(item.imgUrl[0])} alt={item.name}
                                     width="0"
                                     height="0"
                                     sizes="100vw"
-                                    className="w-full h-[40vh] md:h-[42vh]" />
+                                    className="w-[28vh] h-[42vh] md:h-[42vh]" />
                             </div>
                             <h4 className='pt-4 pb-2 text-center'>{item.name}</h4>
                             <p className='text-black text-center'>{item.price}</p>
@@ -36,4 +45,4 @@ const PrintedShirts = () => {
     );
 };
 
-export default PrintedShirts;
+export default Couples;

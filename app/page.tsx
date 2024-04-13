@@ -1,19 +1,19 @@
 import React from 'react'
 import Header from '@/components/shared/Header'
-import TradBalakSpecial from '@/components/shared/TradBalakSpecial'
-import SolidColor from '@/components/shared/SolidColor'
+import Asthetic from '@/components/shared/Asthetic'
+import Vintage from '@/components/shared/Vintage'
 import FullSleves from '@/components/shared/FullSleves'
-import PrintedShirts from '@/components/shared/PrintedShirts'
+import Couples from '@/components/shared/Couples'
 import Footer from '@/components/shared/Footer'
 
 const Home = () => {
   return (
     <main className='bg-white'>
       <Header />
-      <TradBalakSpecial />
-      <PrintedShirts />
-      <SolidColor />
-      <FullSleves />
+      <Asthetic/>
+      <Couples />
+      <Vintage />
+      {/* <FullSleves /> */}
       <Footer />
     </main>
   )

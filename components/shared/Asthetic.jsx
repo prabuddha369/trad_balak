@@ -1,21 +1,30 @@
 import React from 'react';
-import { tradbalakspecial } from '@/constants';
+import { asthetic } from '@/constants';
 import Link from 'next/link'
 import Image from 'next/image';
 
-const TradBalakSpecial = () => {
+const Asthetic = () => {
+    const getDirectGoogleDriveUrl = (originalUrl) => {
+        if (originalUrl.includes('drive.google.com/file/d/')) {
+          const fileId = originalUrl.split('drive.google.com/file/d/')[1].split('/view')[0];
+          const directUrl = `https://drive.google.com/uc?id=${fileId}`;
+          return directUrl;
+        }
+        
+        return originalUrl;
+      };
     return (
-        <section id='Tradbalakspecial' className='w-full h-full text-black pt-[30%] md:pt-[10%] flex flex-col justify-center place-items-center'>
-            <h1 className='text-3xl text-[#404040] pb-6'>TRAD BALAK SPECIAL</h1>
+        <section id='asthetic' className='w-full h-full text-black pt-[30%] md:pt-[10%] flex flex-col justify-center place-items-center'>
+            <h1 className='text-3xl text-[#404040] pb-6'>ASTHETICS</h1>
             <div className='w-[96%] h-full flex flex-wrap justify-between'>
-                {tradbalakspecial.map((item, index) => (
-                    <div key={index} className="flex flex-col w-[50%] md:w-[16%] p-2">
-                        <Link href={`../products/${item.id}`}>
-                            <Image src={item.imgUrl} alt={item.name}
+                {asthetic.map((item, index) => (
+                    <div key={index} className="w-[50%] md:w-[16%] p-2">
+                        <Link className='flex flex-col w-full h-fit place-items-center justify-center' href={`../products/${item.id}`}>
+                            <Image src={getDirectGoogleDriveUrl(item.imgUrl[0])}
                                 width="0"
                                 height="0"
                                 sizes="100vw"
-                                className="w-full h-[30vh] md:h-[42vh]" />
+                                className="w-[20vh] h-[30vh] md:h-[42vh]" />
                             <h4 className='pt-4 pb-2 text-center'>{item.name}</h4>
                             <p className='text-black text-center'>{item.price}</p>
                             <div className='w-full flex flex-wrap justify-center place-items-center gap-2'>
@@ -33,4 +42,4 @@ const TradBalakSpecial = () => {
     );
 };
 
-export default TradBalakSpecial;
+export default Asthetic;
