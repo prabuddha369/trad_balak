@@ -6,11 +6,46 @@ import { GrFormNextLink } from "react-icons/gr";
 import { GrFormPreviousLink } from "react-icons/gr";
 import Carousel from 'react-material-ui-carousel'
 import { FaRegCircle } from "react-icons/fa";
-import { Dancing_Script } from 'next/font/google'
+import localFont from 'next/font/local';
 import { asthetic, vintage, couples, fullsleves } from '@/constants';
 import Image from 'next/image';
 
-const dancing_script = Dancing_Script({ subsets: ["latin"] });
+
+const amsterdam = localFont({
+    src: [
+        {
+            path: '../../../public/font/amsterdamthreeslant-axaym.ttf',
+            weight: '800',
+        },
+    ]
+});
+
+const agrandir = localFont({
+    src: [
+        {
+            path: '../../../public/font/Agrandir Regular 400.otf',
+            weight: '800',
+        },
+    ]
+});
+
+const agrandir_Heavy = localFont({
+    src: [
+        {
+            path: '../../../public/font/Agrandir Grand Heavy 800.otf',
+            weight: '800',
+        },
+    ]
+});
+
+const gotham = localFont({
+    src: [
+        {
+            path: '../../../public/font/Gotham-Bold.otf',
+            weight: '800',
+        },
+    ]
+});
 
 export default function Page({ params }) {
     const productId = params.id;
@@ -64,19 +99,19 @@ export default function Page({ params }) {
 
     return (
         <section className='relative'>
-            <div className='absolute top-[160px] w-fit h-[180px] transform -rotate-90 text-2xl text-white'>Road to summers</div>
+            <div className={`absolute top-[180px] w-fit h-[180px] transform -rotate-90 text-2xl text-white ${agrandir.className}`}>Road to summers</div>
             <Header />
             {product ? (
                 <div>
                     <div className={`pt-[30%] md:pt-[10%]`} style={{ background: `url(/bg.png) no-repeat center`, backgroundSize: '', }}>
                         <div className='flex justify-end me-5'>
                             <div className='h-fit  font-bold flex flex-col'>
-                                <p className='text-2xl pb-2 ms-20'>{product.name}</p>
+                                <p className={`text-2xl mt-4 pb-2 ms-20 ${gotham.className}`}>{product.name}</p>
                                 <p className='bg-white text-white text-[6px] ms-14 me-32'>underline</p>
                             </div>
                         </div>
                         <Carousel
-                            className='flex flex-col w-[100%] mt-5'
+                            className='flex flex-col w-[100%] mt-3'
                             autoPlay={true}
                             interval={5000}
                             swipe={true}
@@ -111,9 +146,9 @@ export default function Page({ params }) {
                                         width="0"
                                         height="0"
                                         sizes="100vw"
-                                        className="w-[40vh] h-[60vh] md:w-1/4 md:h-[40%] mt-3 rounded-xl" />
+                                        className="w-[40vh] h-[45vh] md:w-1/4 md:h-[40%] mt-3 rounded-xl" />
 
-                                    <div className='absolute right-0 mt-80 ps-14' style={{ background: `url(/solution_bg.png) no-repeat left`, }}>
+                                    <div className='absolute right-0 mt-72 ps-14' style={{ background: `url(/solution_bg.png) no-repeat left`, }}>
                                             {product.solutions.map((solution, index) => (
                                                 <p key={index}>{solution}</p>
                                             ))}
@@ -126,10 +161,10 @@ export default function Page({ params }) {
                             <h1 className='text-5xl font-bold'>{product.price}</h1>
                         </div>
                         <div className='mx-5 mt-5'>
-                            <input type='button' value="PRE ORDER" onClick={() => alert("Coming soon!")} className='bg-white text-black text-2xl py-4 font-bold w-full rounded-lg' />
+                            <input type='button' value="PRE ORDER" onClick={() => alert("Coming soon!")} className={`bg-white text-black text-[1.4rem] py-5 font-bold w-full rounded-lg ${agrandir_Heavy.className}`} />
                         </div>
                         <div className='mx-5 mt-3'>
-                            <input type='button' value="ADD TO CART" onClick={() => alert("Coming soon!")} className='bg-[#ab2424] text-white text-2xl py-2 font-bold w-full rounded-lg' />
+                            <input type='button' value="ADD TO CART" onClick={() => alert("Coming soon!")} className={`bg-[#ab2424]/90 text-white text-[1.4rem] py-2 font-bold w-full rounded-lg ${agrandir_Heavy.className}`} />
                         </div>
                         <div className='flex flex-row justify-between mx-5 mt-5 pb-10'>
                             <div className='flex flex-col w-[70%]'>
@@ -145,13 +180,13 @@ export default function Page({ params }) {
                                 </div>
                             </div>
                             <div className='flex flex-col'>
-                                <p className='text-xl pb-2'>Quantity</p>
-                                <div className="flex items-center bg-white text-black font-bold rounded-xl">
-                                    <button onClick={decreaseQuantity} className="px-2 py-1 border border-gray-400 rounded-l">
+                                <p className={`text-xl pb-2 ${agrandir.className}`}>Quantity</p>
+                                <div className="flex items-center bg-white text-black  border border-4 border-white font-bold rounded-sm">
+                                    <button onClick={decreaseQuantity} className="px-2 border-r-2 border-gray-800">
                                         -
                                     </button>
-                                    <span className="px-4 py-1 border border-gray-400">{quantity}</span>
-                                    <button onClick={increaseQuantity} className="px-2 py-1 border border-gray-400 rounded-r">
+                                    <span className="px-4 py-1">{quantity}</span>
+                                    <button onClick={increaseQuantity} className="px-2 border-l-2 border-gray-800 rounded-r">
                                         +
                                     </button>
                                 </div>
@@ -161,8 +196,8 @@ export default function Page({ params }) {
                         <div className='bg-[#5A5A5A]/50 rounded-t-xl flex flex-col'>
                             <div className='flex flex-row pt-5 ps-5'>
                                 <div className='bg-gradient-to-r from-[#ff5c00]/40 via-[#ff3131]/40 to-[#760000]/70 flex flex-row w-[100%] pb-32 rounded-l-2xl p-3'>
-                                    <div className='flex flex-col'>
-                                        <p className={`${dancing_script.className} text-5xl text-white font-bold text-end`}>Product</p>
+                                    <div className='flex flex-col p-4'>
+                                        <p className={`${amsterdam.className} text-4xl text-white font-bold text-end`}>Product</p>
                                         <p className='text-xl text-white font-bold text-end'>Description</p>
                                     </div>
                                     <div className='text-white ms-16 pt-5'>
@@ -189,15 +224,15 @@ export default function Page({ params }) {
 
                             <div className='py-20 pb-32'>
                                 <div className='relative bg-gradient-to-r from-[#760000]/70 via-[#ff3131]/40 to-[#ff5c00]/40 w-[90%] rounded-r-2xl flex flex-row'>
-                                    <div className='text-white ps-10 pt-10 pb-16 w-[60%]'>
+                                    <div className='text-white ps-10 pt-10 pb-20 w-[60%]'>
                                         <ul className='list-disc'>
                                             {product.instructions.map((description, index) => (
                                                 <li key={index}>{description}</li>
                                             ))}
                                         </ul>
                                     </div>
-                                    <div className='pt-2 w-[40%] pe-2'>
-                                        <p className={`${dancing_script.className} text-5xl text-white font-bold text-end`}>Product</p>
+                                    <div className='pt-6 w-[40%] pe-4'>
+                                        <p className={`${amsterdam.className} text-4xl text-white font-bold text-end`}>Product</p>
                                         <p className='text-xl text-white font-bold text-center'>Care</p>
                                     </div>
                                     <Image src='/stained.png' alt={product.name}
@@ -213,12 +248,12 @@ export default function Page({ params }) {
                                 </div>
                             </div>
                         </div>
+                        <Footer />
                     </div>
                 </div>
             ) : (
                 <h1>Product not found</h1>
             )}
-            <Footer />
         </section>
     );
 }
