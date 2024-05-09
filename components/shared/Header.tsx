@@ -31,7 +31,7 @@ const Header = () => {
     const [isOpen, setOpen] = useState(false);
 
     return (
-        <header className='fixed z-10 top-0 w-full h-fit py-4 flex flex-row justify-between place-items-center bg-[#ab2424] text-white'>
+        <header className='fixed z-10 top-0 w-full h-fit pb-2 flex flex-row justify-between place-items-center bg-[#ab2424] text-white'>
             <div className="ms-5">
                 <div className='flex flex-row gap-2 justify-center place-items-center'>
                     <p className={`${bodoni.className} text-[3rem] md:text-6xl`}>TRAD</p>
